@@ -3,6 +3,7 @@
 export default function LoginView(){
     return(
         <>
+        <h1>Login</h1>
         <form>
             <label>
                 Почта: 

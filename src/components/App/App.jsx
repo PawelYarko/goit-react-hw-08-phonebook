@@ -11,11 +11,13 @@ export default function App () {
   return (
     <>
       <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="register" element={RegisterView}/>
-        <Route path="login" element={LoginView}/>
-        <Route path="contacts" element={ContactsView}/>
-      </Route>
+        <Route path="/" element={<Layout />}>
+          {/* <Route index element={<Layout />} /> */}
+          <Route path="register" element={<RegisterView />} />
+          <Route path="login" element={<LoginView />} />
+          <Route path="contacts" element={<ContactsView />} />
+          <Route path="*" element={<Layout />} />
+        </Route>
       </Routes>
     </>
   );
