@@ -6,13 +6,11 @@ const RegisterView = lazy(() => import('../../views/Register/RegisterView'));
 const LoginView = lazy(() => import('../../views/Login/LoginView'));
 const ContactsView = lazy(() => import('../../views/Contacts/ContactsView'));
 
-
-export default function App () {
+export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route index element={<Layout />} /> */}
           <Route path="register" element={<RegisterView />} />
           <Route path="login" element={<LoginView />} />
           <Route path="contacts" element={<ContactsView />} />
@@ -21,4 +19,4 @@ export default function App () {
       </Routes>
     </>
   );
-};
+}
