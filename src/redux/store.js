@@ -10,8 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import todosReducer from './contacts-reducer/redux-slice';
-
+import todosReducer from './contacts-reducer/redux-slice'; // ?????????
 const middleware = [];
 
 const rootReducer = combineReducers({
