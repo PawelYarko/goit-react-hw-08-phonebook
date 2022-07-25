@@ -10,11 +10,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import todosReducer from './contacts-reducer/redux-slice'; // ?????????
+import authReducer from './auth/auth-slice';
+// import todosReducer from './contacts-reducer/redux-slice'; // ?????????
 const middleware = [];
 
 const rootReducer = combineReducers({
-  todos: todosReducer,
+  auth: authReducer,                                //todos: todosReducer
 });
 
 const persistConfig = {
@@ -26,8 +27,7 @@ const persistConfig = {
 
 const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, rootReducer),
-    todos: todosReducer,
+    auth: persistReducer(persistConfig, rootReducer),                                                     //persistReducer(persistConfig, rootReducer),
   }, 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

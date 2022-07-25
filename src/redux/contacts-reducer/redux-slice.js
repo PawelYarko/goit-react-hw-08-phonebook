@@ -1,18 +1,18 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const todoSlice = createSlice({
-    name: 'todos',
-    initialState: {
-      todos: [],
-      status: null,
-      error: null,
-    },
+// const todoSlice = createSlice({
+//     name: 'todos',
+//     initialState: {
+//       todos: [],
+//       status: null,
+//       error: null,
+//     },
   
-    reducers: {
-    },
+//     reducers: {
+//     },
 
-    extraReducers: {
-    },
-  });
+//     extraReducers: {
+//     },
+//   });
 
-  export default todoSlice.reducer;
+//   export default todoSlice.reducer;
