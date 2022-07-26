@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsername }  from '../../redux/auth/auth-selectors';
 import { logOut } from '../../redux/auth/auth-operations';
-
+import s from './LogoutView.module.css';
 
 export default function LogOutView(){
 
@@ -10,10 +10,9 @@ export default function LogOutView(){
     console.log(name)
 
     return(
-        <>
-        <h1>Contacts</h1>
+        <div className={s.container}>
         <p>Wellcome, {name}</p>
         <button type="submit" onClick={() => dispatch(logOut())}>Выйти</button>
-        </>
+        </div>
     );
 }

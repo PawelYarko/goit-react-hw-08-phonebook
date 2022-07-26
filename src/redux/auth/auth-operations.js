@@ -50,4 +50,25 @@ export const logOut = createAsyncThunk('auth/logout',
         }
     }
 )
-// export default register;
+
+export const fetchCurrentUser = createAsyncThunk('auth/refresh', 
+    async (_, thunkAPI) =>{
+        
+        const state = thunkAPI.getState();
+        const perToken = state.auth.auth.user.token;
+        console.log( state)
+
+        if(perToken === null){
+            return thunkAPI.rejectWithValue('error');
+        }
+
+        token.set(perToken);
+        try{
+            const { data } = await axios.post('/users/current');
+            return data;
+        }
+        catch(error){
+
+        }
+    }
+)

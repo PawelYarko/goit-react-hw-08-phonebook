@@ -13,13 +13,14 @@
     text-decoration:none;
 }
 
-/* .registerNav{
-    
+ .registerNav{
+    display: flex;
+    flex-direction: row;
 }
 
 .userNav{
-    
-}    */
+    padding-top: 20px;
+}    
 
 /* .nav:hover{
     color: rgb(177, 31, 87);

@@ -1,5 +1,7 @@
-const getIsLoggerIn = state => state.auth.auth.isLoggerIn;
+const getIsLoggerIn = state => state.auth.isLoggerIn;
 
-const getUsername = state => state.auth.auth.user.name;
+const getUsername = state => state.auth.user.name;
 
-export { getUsername, getIsLoggerIn };
+const getIsLoadingCurUser = state => state.auth.isLoadingCurUser;
+
+export { getUsername, getIsLoggerIn, getIsLoadingCurUser };

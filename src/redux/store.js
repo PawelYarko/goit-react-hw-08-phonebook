@@ -17,20 +17,22 @@ import filter from './todos-reducer/todos-filter';
 
 const middleware = [];
 
-const rootReducer = combineReducers({
-  auth: authReducer,                                //todos: todosReducer
-});
+// const rootReducer = combineReducers({
+//   auth: authReducer,                                //todos: todosReducer
+// });
 
-const persistConfig = {
-  key: 'root',
+const authPersistConfig = {
+  key: 'auth',
   storage,
+  whitelist: ['token'],
 };
 
+// auth: persistReducer(authPersistConfig, authReducer),  whitelist: ['token']
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, rootReducer),  
+    auth: persistReducer(authPersistConfig, authReducer),  
     todos: todosReducer,
     filter                                                   //persistReducer(persistConfig, rootReducer),
   }, 
@@ -43,4 +45,4 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-export default store;
+// export default store;
