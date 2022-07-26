@@ -2,13 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addTodo, deleteTodo } from './todos-slice';
 import { nanoid } from 'nanoid';
 
+const baseURL = 'https://62d5e3f115ad24cbf2ce8796.mockapi.io';
+
 export const fetchTodos = createAsyncThunk(
-    'todos/fetchTodos',
+    '/contacts',
     async function (_, { rejectWithValue }) {
       try {
-        const response = await fetch(
-          'https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts'
-        );
+        const response = await fetch(`${baseURL}/contacts`,
+          {
+            method: 'GET',
+          });
   
         if (!response.ok) {
           throw rejectWithValue('error');
@@ -20,13 +23,23 @@ export const fetchTodos = createAsyncThunk(
       }
     }
   );
+
+  // export const fetchTodos = () => async dispatch =>{
+  //   dispatch(fetchTodosRequest());
+  //   try {
+  //     const { data } = await axios.get('/tasks');
+  //     dispatch(fetchTodosSuccess(data));
+  //   } catch (error) {
+  //     dispatch(fetchTodosError(error.message));
+  //   }
+  // }
   
   export const removeTodo = createAsyncThunk(
     'todos/removeTodo',
     async function (id, { rejectWithValue, dispatch }) {
       try {
         const response = await fetch(
-          `https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts/${id}`,
+          `${baseURL}/contacts/${id}`,
           {
             method: 'DELETE',
           }
@@ -34,7 +47,7 @@ export const fetchTodos = createAsyncThunk(
         if (!response.ok) {
           throw rejectWithValue('error');
         }
-        dispatch(deleteTodo({ id }));
+        return dispatch(deleteTodo({ id }));
       } catch (error) {
         return rejectWithValue(error.message);
       }
@@ -50,7 +63,7 @@ export const fetchTodos = createAsyncThunk(
           ...info,
         };
         const response = await fetch(
-          `https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts?search=${info.name}`, 
+          `${baseURL}/contacts`, 
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -62,7 +75,7 @@ export const fetchTodos = createAsyncThunk(
           throw rejectWithValue('error');
         }
         const data = await response.json();
-        dispatch(addTodo(data));
+        return dispatch(addTodo(data));
       } catch (error) {
         return rejectWithValue(error.message);
       }

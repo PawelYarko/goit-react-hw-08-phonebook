@@ -5,11 +5,7 @@ import { fetchTodos, removeTodo } from './todos-operations';
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: {
-    todos: [],
-    status: null,
-    error: null,
-  },
+  initialState: [],
 
   reducers: {
     addTodo(state, { payload }) {
@@ -26,21 +22,20 @@ const todoSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchTodos.pending]: (state, _action) => {
-      state.status = 'loading';
-      state.error = null;
+    [fetchTodos.pending]: (_state, _action) => {
+      return [];
     },
-    [fetchTodos.fulfilled]: (state, action) => {
-      state.status = 'resolved';
-      state.todos = action.payload;
+    [fetchTodos.fulfilled]: (_state, action) => {
+      return action.payload;
     },
-    [fetchTodos.rejected]: (state, action) => {
-      state.status = 'reject';
-      state.error = action.payload;
-    },
-    [removeTodo.rejected]: (state, action) => {
-      state.status = 'reject';
-      state.error = action.payload;
+    // [fetchTodos.rejected]: (_state, action) => {
+    //   return action.payload;
+    // },
+    // [removeTodo.rejected]: (_state, action) => {
+    //   return action.payload;
+    // },
+    [removeTodo.rejected]: (_state, action) => {
+      return action.payload;
     },
   },
 });

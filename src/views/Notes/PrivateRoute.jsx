@@ -1,8 +1,8 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { getIsLoggerIn } from '../../redux/auth/auth-selectors';
 
-export default function PrivateNotesView({children}){
+export default function PrivateRoute(){
     const isLoggerIn = useSelector(getIsLoggerIn);
-    return isLoggerIn ? children : <Navigate to="/login" />;
+    return isLoggerIn ? <Outlet /> : <Navigate to="/" />;
 }
