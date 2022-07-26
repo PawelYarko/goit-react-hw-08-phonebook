@@ -1,4 +1,4 @@
-import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -15,27 +15,18 @@ import todosReducer from './todos-reducer/todos-slice';
 import filter from './todos-reducer/todos-filter';
 
 
-const middleware = [];
-
-// const rootReducer = combineReducers({
-//   auth: authReducer,                                //todos: todosReducer
-// });
-
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
-// auth: persistReducer(authPersistConfig, authReducer),  whitelist: ['token']
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),  
+    auth: persistReducer(authPersistConfig, authReducer),
     todos: todosReducer,
-    filter                                                   //persistReducer(persistConfig, rootReducer),
-  }, 
+    filter,
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -45,4 +36,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-// export default store;
