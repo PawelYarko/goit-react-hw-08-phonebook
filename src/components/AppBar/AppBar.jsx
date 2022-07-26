@@ -1,33 +1,36 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getIsLoggerIn } from '../../redux/auth/auth-selectors'; //???
 import s from './AppBar.module.css';
-import authSelectors  from '../../redux/auth/auth-selectors'; //???
 
 export default function AppBar() {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  console.log(isLoggedIn)
+  const isLoggerIn = useSelector(getIsLoggerIn);
+  console.log(isLoggerIn);
   return (
     <>
-      <h1>AppBar</h1>
       <nav className={s.navContainer}>
-        <NavLink className={s.nav} to="/">
-          Home
-        </NavLink>
-        <NavLink className={s.nav} to="register">
-          Register
-        </NavLink>
-        <NavLink className={s.nav} to="login">
-            Login
+        <div className={s.userNav}>
+          <NavLink className={s.nav} to="/">
+            Home
           </NavLink>
-        {isLoggedIn ? (
-          <NavLink className={s.nav} to="login">
-            Login
+          <NavLink className={s.nav} to="notes">
+            Notes
           </NavLink>
-        ) : (
-          <NavLink className={s.nav} to="contacts">
-            Contacts
+        </div>
+        <div className={s.registerNav}>
+          <NavLink className={s.nav} to="register">
+            Register
           </NavLink>
-        )}
+          {isLoggerIn ? (
+            <NavLink className={s.nav} to="logout">
+              Logout
+            </NavLink>
+          ) : (
+            <NavLink className={s.nav} to="login">
+              Login
+            </NavLink>
+          )}
+        </div>
       </nav>
     </>
   );

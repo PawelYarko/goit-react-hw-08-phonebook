@@ -6,7 +6,6 @@ import AppBar from '../AppBar/AppBar';
 export default function Layout() {
   return (
     <>
-        <h1>LayOut</h1>
         <AppBar />
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />

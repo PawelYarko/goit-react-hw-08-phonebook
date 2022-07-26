@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth/auth-operations';
+import s from './LoginView.module.css';
 
 // email: "pawelqwe@mail.com"
 // name: "pawelqwe"
@@ -30,26 +31,28 @@ export default function LoginView() {
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={logInFormSubmit}>
-        <label>
+      <form onSubmit={logInFormSubmit} className={s.form}>
+        <label className={s.label}>
           Почта:
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleChangeEmail}
+            className={s.input}
           />
         </label>
-        <label>
+        <label className={s.label}>
           Пароль:
           <input
             type="password"
             name="password"
             value={password}
             onChange={handleChangePassword}
+            className={s.input}
           />
         </label>
-        <button type="submit">Отправить</button>
+        <button type="submit" className={s.button}>Отправить</button>
       </form>
     </>
   );

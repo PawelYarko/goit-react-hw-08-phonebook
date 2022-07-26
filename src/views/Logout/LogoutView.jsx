@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import authSelectors  from '../../redux/auth/auth-selectors';
+import { getUsername }  from '../../redux/auth/auth-selectors';
 import { logOut } from '../../redux/auth/auth-operations';
 
 
-export default function ContactsView(){
+export default function LogOutView(){
 
     const dispatch = useDispatch();
-    const name = useSelector(authSelectors.getUsername);
+    const name = useSelector(getUsername);
+    console.log(name)
 
     return(
         <>
