@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filterSlice } from './todos-reducer/todos-filter';
-import { contactApi } from './todos-reducer/todos-operations';
+import { filterSlice } from './notes-contacts/notes-filter';
+import { contactApi } from './notes-contacts/notes-slice';
 import {
   persistStore,
   persistReducer,

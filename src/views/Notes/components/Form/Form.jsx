@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useCreateContactsMutation, useFetchContactsQuery } from '../../../../redux/todos-reducer/todos-operations';
+import { useCreateContactsMutation, useFetchContactsQuery } from '../../../../redux/notes-contacts/notes-slice';
 import s from './Form.module.css';
 
 export default function Form() {

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { useDeleteContactsMutation, useFetchContactsQuery } from '../../../../redux/todos-reducer/todos-operations';
-import { getFilter } from '../../../../redux/todos-reducer/todos-selectors';
+import { useDeleteContactsMutation, useFetchContactsQuery } from '../../../../redux/notes-contacts/notes-slice';
+import { getFilter } from '../../../../redux/notes-contacts/notes-selectors';
 import s from './ContactsList.module.css';
 
 const ContactsList = () => {
