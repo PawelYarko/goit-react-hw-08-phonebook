@@ -1,0 +1,11 @@
+*{
+    font-family: 'Roboto:300,400,500,700';
+}
+
+.container{
+    max-width: 1000px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: rgb(221, 221, 221); */
+}

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getIsLoggerIn } from '../../redux/auth/auth-selectors'; //???
+import { getIsLoggerIn } from '../../redux/auth/auth-selectors'; 
 import LogOutView from '../../views/Logout/LogoutView'
 import s from './AppBar.module.css';
 
@@ -8,7 +8,7 @@ export default function AppBar() {
   const isLoggerIn = useSelector(getIsLoggerIn);
   console.log(isLoggerIn);
   return (
-    <>
+    <div className={s.container}>
       <nav className={s.navContainer}>
         <div className={s.userNav}>
           <NavLink className={s.nav} to="/">
@@ -31,6 +31,6 @@ export default function AppBar() {
           )}
         </div>
       </nav>
-    </>
+    </div>
   );
 }

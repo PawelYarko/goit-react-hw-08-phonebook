@@ -10,6 +10,7 @@ import LoginView from '../../views/Login/LoginView';
 import LogOutView from '../../views/Logout/LogoutView';
 import { getIsLoadingCurUser } from '../../redux/auth/auth-selectors';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
+import s from './App.module.css';
 
 
 export default function App() {
@@ -25,7 +26,8 @@ export default function App() {
     <>
       <AppBar />
       {isLoadingCurUser &&
-      <Routes>
+      <div className={s.container}>
+        <Routes>
       <Route path="/" element={<PublicRoute />}>
           <Route path="/" element={<Navigate replace to="/login" />} />
           <Route path="/login" element={<LoginView />} />
@@ -37,7 +39,9 @@ export default function App() {
           <Route path="/notes" element={<NotesView />} />
       </Route>
       <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>}
+      </Routes>
+      </div>
+      }
     </>
   );
 }

@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import { logIn } from '../../redux/auth/auth-operations';
 import s from './LoginView.module.css';
 
+//test email
 // email: "pawelqwe@mail.com"
 // name: "pawelqwe"
 // password: "pawelqwe"
@@ -30,29 +33,41 @@ export default function LoginView() {
 
   return (
     <>
-      <h1>Login</h1>
       <form onSubmit={logInFormSubmit} className={s.form}>
-        <label className={s.label}>
-          Почта:
-          <input
+          <TextField
             type="email"
             name="email"
             value={email}
             onChange={handleChangeEmail}
             className={s.input}
+            id="demo-helper-text-misaligned"
+            label="Email"
+            sx={{
+              mt: 3,
+            }}
           />
-        </label>
-        <label className={s.label}>
-          Пароль:
-          <input
+          <TextField
             type="password"
             name="password"
             value={password}
             onChange={handleChangePassword}
             className={s.input}
+            id="demo-helper-text-misaligned"
+            label="Password"
+            sx={{
+              mt: 5,
+            }}
           />
-        </label>
-        <button type="submit" className={s.button}>Отправить</button>
+        <Button 
+        variant="outlined" 
+        type="submit" 
+        className={s.button}
+        sx={{
+          mt: 5,
+        }}
+        >
+          Send
+        </Button>
       </form>
     </>
   );
