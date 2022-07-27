@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/auth-operations';
 import s from './Register.module.css';
 
@@ -21,10 +21,6 @@ export default function RegisterView() {
   const handleChangePassword = e => {
     setPassword(e.currentTarget.value);
   };
-
-  // useEffect(()=>{
-  //     setState
-  // },[])
 
   const registerFormSubmit = e => {
     e.preventDefault();
