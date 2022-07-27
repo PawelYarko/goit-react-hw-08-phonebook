@@ -14,21 +14,18 @@ export default function AppBar() {
           <NavLink className={s.nav} to="/">
             Home
           </NavLink>
-          {isLoggerIn && <NavLink className={s.nav} to="notes">
+          {isLoggerIn && <NavLink className={s.nav} to="/notes">
             Notes
           </NavLink>}
         </div>
         <div className={s.registerNav}>
-          <NavLink className={s.nav} to="register">
+          <NavLink className={s.nav} to="/register">
             Register
           </NavLink>
           {isLoggerIn ? (
             <LogOutView />
-            // <NavLink className={s.nav} to="logout">
-            //   Logout
-            // </NavLink>
           ) : (
-            <NavLink className={s.nav} to="login">
+            <NavLink className={s.nav} to="/login">
               Login
             </NavLink>
           )}
