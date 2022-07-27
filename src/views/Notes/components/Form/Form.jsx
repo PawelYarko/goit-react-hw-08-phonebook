@@ -1,33 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addNewTodo, fetchTodos } from '../../../../redux/todos-reducer/todos-operations';
+import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
+import { useCreateContactsMutation, useFetchContactsQuery } from '../../../../redux/todos-reducer/todos-operations';
 import s from './Form.module.css';
 
 export default function Form() {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [number, setNumber] = useState('');
+  const { data } = useFetchContactsQuery();
 
-  const dispatch = useDispatch();
+  const [createContact] = useCreateContactsMutation();
 
-  useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch]);
-
-  const info = { name, phone };
-
-  const addTask = () => {
-    dispatch(addNewTodo(info));
-  };
   const handleChangeName = e => setName(e.currentTarget.value);
 
   const handleChangeNumber = e => setNumber(e.currentTarget.value);
 
   const onContactAdd = e => {
     e.preventDefault();
-    addTask();
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
+    const checkName = name => {
+      return data.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      );
+    };
+
+    checkName(contact.name)
+      ? alert(`${contact.name} is already in contacts.`)
+      : createContact(contact) && clearInput();
+    
+  };
+
+  const clearInput = () => {
     setName('');
     setNumber('');
-  };
+  }
 
   return (
     <form className={s.form} onSubmit={onContactAdd}>
@@ -51,7 +61,7 @@ export default function Form() {
           className={s.inputNumber}
           type="tel"
           name="number"
-          value={phone}
+          value={number}
           onChange={handleChangeNumber}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"

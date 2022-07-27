@@ -1,12 +1,13 @@
-import { createSelector } from "@reduxjs/toolkit"
+// import { createSelector } from "@reduxjs/toolkit"
 
-const getTodos = (state) => state.todos.todos;
+// const getContacts = (state) => state.contacts;
 const getFilter = (state) => state.filter;
-const getStatus = (state) => state.todos.status;
-const getError = (state) => state.todos.error;
+// const getStatus = (state) => state.todos.status;
+// const getError = (state) => state.todos.error;   getStatus, getError,
 
-const getVisibleContacts = createSelector([getTodos, getFilter], (todos, filter) =>{
-  return todos.filter(({ name }) => name.toLowerCase().includes(filter));
-});
+// const getVisibleContacts = createSelector([getContacts, getFilter], (contacts, filter) =>{
+//   return contacts.filter(({ name }) => name.toLowerCase().includes(filter));
+// });
 
- export { getTodos, getFilter, getStatus, getError, getVisibleContacts };
+//  export { getContacts, getFilter, getVisibleContacts };
+export { getFilter };

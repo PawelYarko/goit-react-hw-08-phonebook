@@ -1,72 +1,52 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addTodo, deleteTodo } from './todos-slice';
-import { nanoid } from 'nanoid';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// const baseURL = 'https://62d5e3f115ad24cbf2ce8796.mockapi.io';
+export const contactApi = createApi({
+  reducerPath: 'contactApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://connections-api.herokuapp.com',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
 
-export const fetchTodos = createAsyncThunk(
-  'todos/fetchTodos',
-  async function (_, { rejectWithValue }) {
-    try {
-      const response = await fetch(
-        'https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts'
-      );
-
-      if (!response.ok) {
-        throw rejectWithValue('error');
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      } else {
+        headers.delete('authorization');
       }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
-export const removeTodo = createAsyncThunk(
-  'todos/removeTodo',
-  async function (id, { rejectWithValue, dispatch }) {
-    try {
-      const response = await fetch(
-        `https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts/${id}`,
-        {
-          method: 'DELETE',
-        }
-      );
-      if (!response.ok) {
-        throw rejectWithValue('error');
-      }
-      dispatch(deleteTodo({ id }));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+      return headers;
+    },
+  }),
 
-export const addNewTodo = createAsyncThunk(
-  'todos/addNewTodo',
-  async function (info, { rejectWithValue, dispatch }) {
-    try {
-      const todo = {
-        id: nanoid(),
-        ...info,
-      };
-      const response = await fetch(
-        `https://62d5e3f115ad24cbf2ce8796.mockapi.io/contacts?search=${info.name}`, 
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(todo),
-        }
-      );
+  refetchOnMountOrArgChange: true,
+  tagTypes: ['Contacts'],
+  endpoints: builder => ({
+    fetchContacts: builder.query({
+      query: () => '/contacts',
+      providesTags: ['Contact'],
+    }),
+    createContacts: builder.mutation({
+      query: contactNumber => ({
+        url: '/contacts',
+        method: 'POST',
+        body: {
+          name: contactNumber.name,
+          number: contactNumber.number,
+        },
+      }),
+      invalidatesTags: ['Contact'],
+    }),
+    deleteContacts: builder.mutation({
+      query: contactId => ({
+        url: `/contacts/${contactId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contact'],
+    }),
+  }),
+});
 
-      if (!response.ok) {
-        throw rejectWithValue('error');
-      }
-      const data = await response.json();
-      dispatch(addTodo(data));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+export const {
+  useFetchContactsQuery,
+  useDeleteContactsMutation,
+  useCreateContactsMutation,
+} = contactApi;
