@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/105.40f81ee5.chunk.js","mappings":"gMAEe,SAASA,IACpB,OACI","sources":["views/Contacts/ContactsView.jsx"],"sourcesContent":["\n\nexport default function ContactsView(){\n    return(\n        <>\n        </>\n    );\n}"],"names":["ContactsView"],"sourceRoot":""}
