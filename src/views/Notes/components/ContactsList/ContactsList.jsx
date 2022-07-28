@@ -6,7 +6,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import s from './ContactsList.module.css';
@@ -27,7 +26,8 @@ const ContactsList = () => {
 
   const visibleContacts = getVisibleContacts();
 
-  return (<> 
+  return (
+  <> 
           <Table sx={{ minWidth: 500 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -36,7 +36,7 @@ const ContactsList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {visibleContacts.map(({ id, name, number }) => (
+          {data && visibleContacts.map(({ id, name, number }) => (
             <TableRow
               key={id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -56,7 +56,6 @@ const ContactsList = () => {
           ))}
         </TableBody>
       </Table>
-      {/* <TableRow></TableRow> */}
           
           </>
   );
