@@ -4,6 +4,7 @@ import { useCreateContactsMutation, useFetchContactsQuery } from '../../../../re
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import PhoneIcon from '@mui/icons-material/Phone';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import s from './Form.module.css';
@@ -56,10 +57,13 @@ export default function Form() {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         id="input-with-icon-textfield"
-        label="TextField"
+        label="Contact name"
+        sx={{mt:5, ml:5}}
         InputProps={{
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment 
+            position="start"
+            >
               <AccountCircle />
             </InputAdornment>
           ),
@@ -76,11 +80,12 @@ export default function Form() {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         id="input-with-icon-textfield"
-        label="TextField"
+        label="Phone"
+        sx={{mt:5, ml:5}}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <AccountCircle />
+              <PhoneIcon />
             </InputAdornment>
           ),
         }}
@@ -90,9 +95,10 @@ export default function Form() {
       type="submit" 
       className={s.button}
       variant="contained" 
+      sx={{mt:5, ml:5, mb: 5}}
       endIcon={<SendIcon />}
       >
-      Add contact
+      Add
       </Button>
     </form>
   );

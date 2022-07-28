@@ -8,8 +8,7 @@ export default function NotesView(){
     return (
       <div className={s.container}>
         <Form />
-        <div>
-          <h2>Contacts</h2>
+        <div className={s.cotactsList}>
           <Filter />
           <ContactsList />
         </div>

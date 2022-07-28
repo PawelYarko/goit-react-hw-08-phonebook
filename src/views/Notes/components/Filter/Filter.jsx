@@ -1,5 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { changeFilter } from '../../../../redux/notes-contacts/notes-filter';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import s from './Filter.module.css';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -11,8 +15,24 @@ const Filter = () => {
 
   return (
     <div>
-      <h3>Find contacts by name</h3>
-      <input type="text" name="filter" onChange={onFilterChange} />
+      <TextField
+        className={s.input}
+        type="text" 
+        name="filter" 
+        onChange={onFilterChange}
+        id="input-with-icon-textfield"
+        sx={{mt:1, ml:5}}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment 
+            position="start"
+            >
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+        variant="standard"
+      />
     </div>
   );
 };
