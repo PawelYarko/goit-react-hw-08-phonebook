@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useDeleteContactsMutation, useFetchContactsQuery } from '../../../../redux/notes-contacts/notes-slice';
 import { getFilter } from '../../../../redux/notes-contacts/notes-selectors';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import s from './ContactsList.module.css';
 
 const ContactsList = () => {
@@ -24,13 +26,14 @@ const ContactsList = () => {
       {data && visibleContacts.map(({ id, name, number }) => (
         <li key={id} className={s.listItem}>
           {name}: {number}
-          <button
-            className={s.buttonDelete}
-            type="button"
-            onClick={() => deleteContact(id)}
-          >
+          <Button 
+          className={s.buttonDelete}
+          type="button"
+          onClick={() => deleteContact(id)}
+          variant="outlined" 
+          startIcon={<DeleteIcon />}>
             Delete
-          </button>
+          </Button>
         </li>
       ))}
     </ul>

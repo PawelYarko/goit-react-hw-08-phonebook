@@ -7,7 +7,6 @@ import s from './NotesView.module.css';
 export default function NotesView(){
     return (
       <div className={s.container}>
-        <h1>Phonebook</h1>
         <Form />
         <div>
           <h2>Contacts</h2>

@@ -12,6 +12,7 @@
 }
 .nav{
     color: rgba(25, 118, 210, 0.5);
+    align-items: center;
     padding: 20px 40px 20px 40px;
     font-size: 24px;
     font-weight: 500;

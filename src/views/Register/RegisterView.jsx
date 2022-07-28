@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/auth-operations';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import s from './Register.module.css';
 
 export default function RegisterView() {
@@ -32,39 +34,53 @@ export default function RegisterView() {
 
   return (
     <>
-    <h1>Register</h1>
       <form onSubmit={registerFormSubmit} className={s.form}>
-        <label className={s.label}>
-          Имя:
-          <input
+        <TextField
             type="text"
             name="name"
             value={name}
             onChange={handleChangeName}
             className={s.input}
+            id="demo-helper-text-misaligned"
+            label="Name"
+            sx={{
+              mt: 5,
+            }}
           />
-        </label>
-        <label className={s.label}>
-          Почта:
-          <input
+        <TextField
             type="email"
             name="email"
             value={email}
             onChange={handleChangeEmail}
             className={s.input}
+            id="demo-helper-text-misaligned"
+            label="Email"
+            sx={{
+              mt: 5,
+            }}
           />
-        </label>
-        <label className={s.label}>
-          Пароль:
-          <input
+        <TextField
             type="password"
             name="password"
             value={password}
             onChange={handleChangePassword}
             className={s.input}
+            id="demo-helper-text-misaligned"
+            label="Password"
+            sx={{
+              mt: 5,
+            }}
           />
-        </label>
-        <button type="submit" className={s.button}>Отправить</button>
+        <Button 
+        variant="outlined" 
+        type="submit" 
+        className={s.button}
+        sx={{
+          mt: 5,
+        }}
+        >
+          Send
+        </Button>
       </form>
     </>
   );
